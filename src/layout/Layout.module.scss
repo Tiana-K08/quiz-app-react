@@ -1,0 +1,27 @@
+@use '../styles/variables' as *;
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $text-main;
+  background: $bg-page;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 60%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  padding: 40px;
+
+  background: $bg-container;
+  border: 2px solid $border-color;
+  border-radius: $radius;
+  box-shadow: $shadow-container;
+}

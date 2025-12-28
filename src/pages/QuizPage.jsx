@@ -1,3 +1,9 @@
-export default function () {
-  return <h1>Quiz ...</h1>;
+import styles from './Page.module.scss';
+
+export default function QuizPage() {
+  return (
+    <div className={styles.content}>
+      <h1>Quiz ...</h1>
+    </div>
+  );
 }
