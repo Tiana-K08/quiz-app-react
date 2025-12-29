@@ -1,21 +1,33 @@
 import styles from './ProgressBar.module.scss';
 
-export default function ProgressBar() {
-  // Статичні дані - замінити
-  const steps = [
-    { id: 1, questions: 4, answers: 1 },
-    { id: 2, questions: 7, answers: 2 },
-    { id: 3, questions: 5, answers: 3 },
-    { id: 4, questions: 4, answers: 3 },
-  ];
-
+export default function ProgressBar({
+  steps,
+  currentStepIndex,
+  currentQuestionIndex,
+}) {
   return (
     <div className={styles.progressBarWrapper}>
-      {steps.map((step) => {
-        const fullLine = (step.answers / step.questions) * 100;
+      {steps.map((step, index) => {
+        const totalQuestions = step.fields.questions.length;
+        let fullLine = 0;
+
+        // steps befor
+        if (index < currentStepIndex) {
+          fullLine = 100;
+        }
+
+        // current step
+        if (index === currentStepIndex) {
+          fullLine = (currentQuestionIndex / totalQuestions) * 100;
+        }
+
+        // steps after
+        if (index > currentStepIndex) {
+          fullLine = 0;
+        }
 
         return (
-          <div key={step.id} className={styles.stepBar}>
+          <div key={step.fields.stepId} className={styles.stepBar}>
             <div
               className={styles.stepFull}
               style={{ width: `${fullLine}%` }}

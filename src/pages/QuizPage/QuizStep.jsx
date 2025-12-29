@@ -65,11 +65,15 @@ export default function QuizStep() {
 
   return (
     <>
+      <ProgressBar
+        steps={steps}
+        currentStepIndex={currentStepIndex}
+        currentQuestionIndex={currentQuestionIndex}
+      />
       {isFinish ? (
         <QuizStepFinish onNextStep={handleToNextStep} />
       ) : (
         <>
-          <ProgressBar />
           <QuizQuestion
             stepOrder={currentStep.fields.order}
             stepTitle={currentStep.fields.title}
