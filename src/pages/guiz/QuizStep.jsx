@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import client from '../../services/contentful.js';
 
 import QuizQuestion from '../../components/QuizQuestion.jsx';
@@ -12,6 +12,7 @@ export default function QuizPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     client
@@ -30,6 +31,10 @@ export default function QuizPage() {
       });
   }, []);
 
+  useEffect(() => {
+    setCurrentQuestionIndex(0);
+  }, [slug]);
+
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error: {error}</h1>;
 
@@ -40,15 +45,27 @@ export default function QuizPage() {
   const isFinish = currentQuestionIndex >= questions.length;
 
   const handleToNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  const currentStepIndex = steps.indexOf(currentStep);
+  const nextStep =
+    currentStepIndex !== -1 && currentStepIndex < steps.length - 1
+      ? steps[currentStepIndex + 1].fields.stepId
+      : null;
+
+  const handleToNextStep = () => {
+    if (nextStep) {
+      navigate(`/quiz/${nextStep}`);
+    } else {
+      navigate('/results');
     }
   };
 
   return (
     <>
       {isFinish ? (
-        <QuizStepFinish />
+        <QuizStepFinish onNextStep={handleToNextStep} />
       ) : (
         <QuizQuestion
           stepOrder={currentStep.fields.order}
