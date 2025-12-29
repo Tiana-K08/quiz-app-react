@@ -6,7 +6,7 @@ import QuizQuestion from '../../components/QuizQuestion.jsx';
 import QuizStepFinish from '../../components/QuizStepFinish.jsx';
 import NotFoundPage from '../NotFoundPage.jsx';
 
-export default function QuizPage() {
+export default function QuizStep() {
   const [steps, setSteps] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [loading, setLoading] = useState(true);

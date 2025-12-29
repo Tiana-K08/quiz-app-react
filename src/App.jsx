@@ -7,8 +7,8 @@ import {
 
 import Layout from './layout/Layout.jsx';
 import HomePage from './pages/HomePage.jsx';
-import QuizLayout from './pages/guiz/QuizLayout.jsx';
-import QuizStep from './pages/guiz/QuizStep.jsx';
+import QuizLayout from './pages/QuizPage/QuizLayout.jsx';
+import QuizStep from './pages/QuizPage/QuizStep.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
