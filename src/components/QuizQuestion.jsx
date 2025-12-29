@@ -1,10 +1,18 @@
-export default function QuizQuestion({ question, onNext }) {
+export default function QuizQuestion({
+  stepOrder,
+  stepTitle,
+  question,
+  onNextQuestion,
+}) {
   return (
-    <div>
+    <>
+      <h1>
+        Крок {stepOrder}: {stepTitle}
+      </h1>
       <p>{question.body}</p>
       <p>Тут мають бути варіанти відповіді</p>
       {/* Поле для текстової відповіді */}
-      <button onClick={onNext}>Наступне питання</button>
-    </div>
+      <button onClick={onNextQuestion}>Наступне питання</button>
+    </>
   );
 }
