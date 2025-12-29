@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+
+.progressBarWrapper {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.stepBar {
+  flex: 1;
+  height: 20px;
+
+  background: $bg-container;
+  border: 2px solid $progress-bar;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: $shadow-container;
+}
+
+.stepFull {
+  height: 100%;
+  background: $progress-bar;
+}

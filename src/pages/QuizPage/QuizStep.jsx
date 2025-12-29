@@ -5,6 +5,7 @@ import client from '../../services/contentful.js';
 import QuizQuestion from '../../components/QuizQuestion.jsx';
 import QuizStepFinish from '../../components/QuizStepFinish.jsx';
 import NotFoundPage from '../NotFoundPage.jsx';
+import ProgressBar from '../../components/ProgressBar/ProgressBar.jsx';
 
 export default function QuizStep() {
   const [steps, setSteps] = useState([]);
@@ -67,12 +68,15 @@ export default function QuizStep() {
       {isFinish ? (
         <QuizStepFinish onNextStep={handleToNextStep} />
       ) : (
-        <QuizQuestion
-          stepOrder={currentStep.fields.order}
-          stepTitle={currentStep.fields.title}
-          question={questions[currentQuestionIndex].fields}
-          onNextQuestion={handleToNextQuestion}
-        />
+        <>
+          <ProgressBar />
+          <QuizQuestion
+            stepOrder={currentStep.fields.order}
+            stepTitle={currentStep.fields.title}
+            question={questions[currentQuestionIndex].fields}
+            onNextQuestion={handleToNextQuestion}
+          />
+        </>
       )}
     </>
   );
