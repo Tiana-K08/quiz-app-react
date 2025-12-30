@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import client from '../../services/contentful.js';
 
-import QuizQuestion from '../../components/QuizQuestion.jsx';
-import QuizStepFinish from '../../components/QuizStepFinish.jsx';
+import QuizQuestion from '../../components/QuizQuestion/QuizQuestion.jsx';
+import QuizStepFinish from '../../components/QuizStepFinish/QuizStepFinish.jsx';
 import NotFoundPage from '../NotFoundPage.jsx';
 import ProgressBar from '../../components/ProgressBar/ProgressBar.jsx';
 

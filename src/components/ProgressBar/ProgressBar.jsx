@@ -6,7 +6,7 @@ export default function ProgressBar({
   currentQuestionIndex,
 }) {
   return (
-    <div className={styles.progressBarWrapper}>
+    <div className={styles.progressBar}>
       {steps.map((step, index) => {
         const totalQuestions = step.fields.questions.length;
         let fullLine = 0;

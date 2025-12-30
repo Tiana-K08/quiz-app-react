@@ -4,8 +4,8 @@ import styles from './Layout.module.scss';
 
 export default function Layout() {
   return (
-    <div className={styles.page}>
-      <main className={styles.container}>
+    <div className={styles.pageWrapper}>
+      <main className={styles.mainWrapper}>
         <Outlet />
       </main>
     </div>

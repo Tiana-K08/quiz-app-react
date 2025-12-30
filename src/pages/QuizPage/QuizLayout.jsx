@@ -4,7 +4,7 @@ import styles from '../Page.module.scss';
 
 export default function QuizLayout() {
   return (
-    <div className={styles.content}>
+    <div className={`${styles.content} ${styles.quiz}`}>
       <Outlet />
     </div>
   );

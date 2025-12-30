@@ -1,0 +1,22 @@
+@use './variables' as *;
+
+.button {
+  padding: 14px 32px;
+  color: $text-white;
+  background: $bg-btn;
+  border: none;
+  border-radius: 50px;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background: $hover-btn;
+    transform: translateY(-2px);
+    box-shadow: $shadow-btn;
+  }
+}
