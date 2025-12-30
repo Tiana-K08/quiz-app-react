@@ -8,12 +8,26 @@ export default function QuizQuestion({
 }) {
   return (
     <div className={styles.question}>
-      <h1>
+      <h2>
         Крок {stepOrder}: {stepTitle}
-      </h1>
+      </h2>
       <p>{question.body}</p>
-      <p>Тут мають бути варіанти відповіді</p>
-      {/* Поле для текстової відповіді */}
+
+      {question.answerType === 'text' && (
+        <input type="text" className={styles.input} />
+      )}
+
+      {question.answerType === 'multiple' && (
+        <div className={styles.checkbox}>
+          {question.answerOptions.map((option, index) => (
+            <label key={index}>
+              <input type="checkbox" value={option} />
+              {option}
+            </label>
+          ))}
+        </div>
+      )}
+
       <button onClick={onNextQuestion} className={styles.button}>
         Наступне питання
       </button>

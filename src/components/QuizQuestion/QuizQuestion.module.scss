@@ -1,3 +1,4 @@
+@use '../../styles/variables' as *;
 @use '../../styles/button.scss';
 
 .question {
@@ -6,9 +7,64 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
+
+  h2 {
+    color: $text-main;
+    font-family: 'Nunito', sans-serif;
+    font-size: 28px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+  }
 
   .button {
     margin-top: auto;
+  }
+}
+
+.input {
+  box-sizing: border-box;
+  min-width: 280px;
+  margin: 10px 0 20px 0;
+  padding: 10px 12px;
+  border: 2px solid $answer-border;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $hover-btn;
+  }
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+
+  label {
+    min-height: 20px;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+
+    accent-color: $hover-btn;
+    cursor: pointer;
   }
 }
