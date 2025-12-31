@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
-import { saveAnswer } from '../../store/quizSlice.js';
+import { useNavigate } from 'react-router-dom';
+import { saveAnswer, clearAnswers } from '../../store/quizSlice.js';
 
 import styles from './QuizQuestion.module.scss';
 
@@ -12,11 +11,16 @@ export default function QuizQuestion({
   question,
   onNextQuestion,
 }) {
+  const navigate = useNavigate();
   const [answer, setAnswer] = useState(
     question.answerType === 'multiple' ? [] : ''
   );
-  const answers = useSelector((state) => state.quiz.answers);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setAnswer(question.answerType === 'multiple' ? [] : '');
+  }, [question]);
 
   return (
     <div className={styles.question}>
@@ -56,44 +60,68 @@ export default function QuizQuestion({
         />
       )}
 
-      <button
-        onClick={() => {
-          let isCorrect = false;
+      <div className={styles.btnContainer}>
+        <button
+          className={styles.button}
+          onClick={() => {
+            dispatch(clearAnswers());
+            navigate('/');
+          }}
+        >
+          Вийти з вікторини
+        </button>
 
-          if (question.answerType === 'text') {
-            const userText =
-              typeof answer === 'string' ? answer.trim().toLowerCase() : '';
-            const correctText =
-              typeof question.correctAnswer === 'string'
-                ? question.correctAnswer.trim().toLowerCase()
-                : '';
-            isCorrect = userText === correctText;
-          }
+        <button
+          className={styles.button}
+          onClick={() => {
+            const isAnswerEmpty =
+              question.answerType === 'text'
+                ? answer.trim() === ''
+                : answer.length === 0;
 
-          if (question.answerType === 'multiple') {
-            const sortedUser = [...answer].sort();
-            const sortedCorrect = [...question.correctAnswer].sort();
+            if (isAnswerEmpty) {
+              alert(
+                'Будь ласка, введіть відповідь щоб перейти до наступного питання!'
+              );
+              return;
+            }
 
-            isCorrect =
-              sortedUser.length === sortedCorrect.length &&
-              sortedUser.every((val, index) => val === sortedCorrect[index]);
-          }
+            let isCorrect = false;
 
-          dispatch(
-            saveAnswer({
-              questionId: question.questionId,
-              userAnswer: answer,
-              correctAnswer: question.correctAnswer,
-              isCorrect,
-            })
-          );
+            if (question.answerType === 'text') {
+              const userText =
+                typeof answer === 'string' ? answer.trim().toLowerCase() : '';
+              const correctText = Array.isArray(question.correctAnswer)
+                ? question.correctAnswer[0].trim().toLowerCase()
+                : question.correctAnswer.trim().toLowerCase();
 
-          onNextQuestion();
-        }}
-        className={styles.button}
-      >
-        Наступне питання
-      </button>
+              isCorrect = userText === correctText;
+            }
+
+            if (question.answerType === 'multiple') {
+              const sortedUser = [...answer].sort();
+              const sortedCorrect = [...question.correctAnswer].sort();
+
+              isCorrect =
+                sortedUser.length === sortedCorrect.length &&
+                sortedUser.every((val, index) => val === sortedCorrect[index]);
+            }
+
+            dispatch(
+              saveAnswer({
+                questionId: question.questionId,
+                userAnswer: answer,
+                correctAnswer: question.correctAnswer,
+                isCorrect,
+              })
+            );
+
+            onNextQuestion();
+          }}
+        >
+          Наступне питання
+        </button>
+      </div>
     </div>
   );
 }

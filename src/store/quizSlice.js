@@ -9,11 +9,11 @@ const quizSlice = createSlice({
     saveAnswer: (state, action) => {
       state.answers.push(action.payload);
     },
-    resetQuiz: (state) => {
+    clearAnswers: (state) => {
       state.answers = [];
     },
   },
 });
 
-export const { saveAnswer, resetQuiz } = quizSlice.actions;
+export const { saveAnswer, clearAnswers } = quizSlice.actions;
 export default quizSlice.reducer;
