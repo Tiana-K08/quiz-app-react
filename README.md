@@ -51,12 +51,12 @@
 | Роутінг     | React Router DOM        |
 | Стилізація  | SCSS + CSS Modules      |
 | CMS         | Contentful              |
-| Хостинг     | Heroku                  |
+| Хостинг     | Vercel                  |
 | Інструменти | ESLint, Prettier        |
 
 ---
 
-## 🚀 Запуск проєкту локально
+## Запуск проєкту локально
 
 1. Клонувати репозиторій:
 
