@@ -72,3 +72,18 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 768px) {
+  .checkbox {
+    grid-template-columns: 1fr;
+  }
+
+  .btnContainer {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .input {
+    min-width: fit-content;
+  }
+}
